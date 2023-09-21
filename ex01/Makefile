@@ -2,7 +2,7 @@ C++ = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 NAME = phonebook
 
-SOURCES = ./PhoneBook.cpp ./Contact.cpp
+SOURCES = ./main.cpp ./Contact.cpp ./PhoneBook.cpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 

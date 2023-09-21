@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 15:53:32 by njantsch          #+#    #+#             */
-/*   Updated: 2023/09/15 19:42:39 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/09/21 16:21:14 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #define BLUE "\033[34m"
 
 #include "Contact.hpp"
+#include <iostream>
+#include <iomanip>
 
 class PhoneBook {
 private:
@@ -26,7 +28,9 @@ private:
 	Contact	contacts[8];
 public:
 	void	add_function(void);
-
+	void	search_function(void);
+	void	pb_class_init(void);
+	void	display_all(void);
 };
 
 #endif
