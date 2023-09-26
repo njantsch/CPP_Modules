@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/25 13:51:16 by njantsch          #+#    #+#             */
-/*   Updated: 2023/09/25 18:33:20 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/09/26 13:00:05 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include <iostream>
 #include <iomanip>
 #include <sstream>
-#include <ctime>
 
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
@@ -95,7 +94,7 @@ void Account::makeDeposit(int deposit)
 bool Account::makeWithdrawal(int withdrawal)
 {
 	_displayTimestamp();
-	if (_amount < withdrawal)
+	if (_amount < withdrawal || _amount == 0)
 	{
 		std::cout << " index:" << _accountIndex << ";p_amount:"
 		<< _amount << ";withdrawal:refused" << std::endl;
