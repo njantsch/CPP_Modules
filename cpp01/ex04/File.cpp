@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 15:01:45 by njantsch          #+#    #+#             */
-/*   Updated: 2023/10/01 18:27:32 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/10/02 17:41:35 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,6 @@ int	File::replace( void )
 	size_t			index = 0;
 
 	infile.open(filename);
-	if (!infile) {
-		std::cout << RED << "Error opening file" << RESET << std::endl;
-		return (1);
-	}
 	if (!outfile)
 	{
 		std::cout << RED << "Error creating an outfile" << RESET << std::endl;
