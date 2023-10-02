@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 17:15:32 by njantsch          #+#    #+#             */
-/*   Updated: 2023/09/21 17:59:00 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/09/26 13:17:18 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ std::string	check_contact_string(std::string str)
 			std::cout << RED << "Please put something in the prompt" << RESET << std::endl;
 			std::cout << str;
 		}
-		else if (check == 2 || (str.compare("Phone number: ") == 0 && contact_prompt.length() > 15)) {
+		else if (check == 2 || (str.compare("Phone number: ") == 0 && contact_prompt.size() > 15)) {
 			std::cout << RED << "Please input a valid number" << RESET << std::endl;
 			std::cout << str;
 		}
