@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Point.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 12:47:11 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/22 19:51:38 by njantsch         ###   ########.fr       */
+/*   Created: 2023/11/22 20:57:45 by njantsch          #+#    #+#             */
+/*   Updated: 2023/11/22 21:35:49 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+#include "Point.hpp"
 
-int main( void )
+Point::Point() {}
+
+Point::Point(const float x, const float y) { this->x(x); this->y(y); }
+
+Point::Point(const Point& other) { *this = other; }
+
+Point&	Point::operator=(const Point& other)
 {
-	Fixed a;
-	Fixed b( a );
-	Fixed c;
-
-	c = b;
-
-	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
-
-	return 0;
+	if (this != &other) {
+		this->x = other.x;
+		this->y = other.y;
+		return (*this);
+	}
+	std::cout << RED << "Error assigning the same value" << RESET << std::endl;
+	return (*this);
 }

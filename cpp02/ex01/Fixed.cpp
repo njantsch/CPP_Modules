@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 18:36:45 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/21 22:04:09 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/11/22 18:43:54 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,7 @@
 
 const int Fixed::_fraction = 8;
 
-Fixed::Fixed() : _fixed(0)
-{
-	std::cout << "Default constructor called" << std::endl;
-}
+Fixed::Fixed() : _fixed(0) { std::cout << "Default constructor called" << std::endl; }
 
 Fixed::Fixed(const int fixedInt)
 {
@@ -54,27 +51,12 @@ std::ostream& operator<<(std::ostream& out, const Fixed& other)
 	return (out);
 }
 
-Fixed::~Fixed()
-{
-	std::cout << "Destructor called" << std::endl;
-}
+Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; }
 
-int Fixed::getRawBits() const
-{
-	return (this->_fixed);
-}
+int Fixed::getRawBits() const { return (this->_fixed); }
 
-void Fixed::setRawBits(int const raw)
-{
-	this->_fixed = raw;
-}
+void Fixed::setRawBits(int const raw) { this->_fixed = raw; }
 
-int Fixed::toInt() const
-{
-	return (this->_fixed >> this->_fraction);
-}
+int Fixed::toInt() const { return (this->_fixed >> this->_fraction); }
 
-float Fixed::toFloat() const
-{
-	return ((float)_fixed / (float)(1 << _fraction));
-}
+float Fixed::toFloat() const { return ((float)_fixed / (float)(1 << _fraction)); }

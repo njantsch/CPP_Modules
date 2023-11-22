@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:47:06 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/21 19:36:00 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/11/22 19:28:42 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ Fixed&	Fixed::operator=(const Fixed& other)
 		this->_fixed = other.getRawBits();
 		return (*this);
 	}
-	std::cout << "Error assigning the same value" << std::endl;
+	std::cout << RED << "Error assigning the same value" << RESET << std::endl;
 	return (*this);
 }
 
@@ -47,8 +47,4 @@ int Fixed::getRawBits() const
 	return (this->_fixed);
 }
 
-void Fixed::setRawBits(int const raw)
-{
-	std::cout << "setRawBits member function called" << std::endl;
-	this->_fixed = raw;
-}
+void Fixed::setRawBits(int const raw) { this->_fixed = raw; }

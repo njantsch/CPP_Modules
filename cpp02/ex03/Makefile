@@ -1,11 +1,11 @@
 C++ = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
-NAME = fixed_exec
+NAME = bsp
 
 GREEN=\033[32m
 RESET=\033[0m
 
-SOURCES = ./main.cpp ./Fixed.cpp
+SOURCES = ./main.cpp ./Fixed.cpp ./bsp.cpp ./Point.cpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 

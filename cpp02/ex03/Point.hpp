@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Point.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 12:47:11 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/22 19:51:38 by njantsch         ###   ########.fr       */
+/*   Created: 2023/11/22 20:57:48 by njantsch          #+#    #+#             */
+/*   Updated: 2023/11/22 21:24:21 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef POINT_HPP
+# define POINT_HPP
+
 #include "Fixed.hpp"
 
-int main( void )
+class	Point
 {
-	Fixed a;
-	Fixed b( a );
-	Fixed c;
-
-	c = b;
-
-	std::cout << a.getRawBits() << std::endl;
-	std::cout << b.getRawBits() << std::endl;
-	std::cout << c.getRawBits() << std::endl;
-
-	return 0;
+private:
+	const Fixed x;
+	const Fixed y;
+public:
+	Point();
+	Point(const float x, const float y);
+	Point(const Point& other);
+	~Point();
+	Fixed& operator=(const Fixed& other);
 }
+
+#endif

@@ -2,14 +2,22 @@ C++ = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 NAME = fixed_exec
 
+GREEN=\033[32m
+RESET=\033[0m
+
 SOURCES = ./main.cpp ./Fixed.cpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
 all: $(NAME)
 
+%.o: %.cpp
+	@echo "$(GREEN)Compiling $<...$(RESET)"
+	@$(C++) $(CFLAGS) -c $< -o $@
+
 $(NAME) : $(OBJECTS)
-	@$(C++) $(CFLAGS) -o $(NAME) $(OBJECTS)
+	@echo "$(GREEN)Linking...$(RESET)"
+	@$(C++) $(OBJECTS) -o $(NAME)
 
 clean:
 	@rm -f $(OBJECTS)

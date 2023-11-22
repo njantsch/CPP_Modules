@@ -6,12 +6,17 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 12:47:08 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/21 19:24:39 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/11/22 19:18:53 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIXED_HPP
 # define FIXED_HPP
+
+#define RESET "\033[0m"
+#define RED "\033[31m"
+#define GREEN "\033[32m"
+#define BOLDGREEN "\033[1m\033[32m"
 
 #include <iostream>
 
