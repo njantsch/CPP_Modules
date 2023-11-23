@@ -5,7 +5,7 @@ NAME = bsp
 GREEN=\033[32m
 RESET=\033[0m
 
-SOURCES = ./main.cpp ./Fixed.cpp ./bsp.cpp ./Point.cpp
+SOURCES = ./main.cpp ./Fixed.cpp ./Point.cpp ./bsp.cpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 

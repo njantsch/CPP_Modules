@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 20:57:48 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/22 21:24:21 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/11/23 19:20:30 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,16 @@ public:
 	Point();
 	Point(const float x, const float y);
 	Point(const Point& other);
+	Point& operator=(Point& other);
 	~Point();
-	Fixed& operator=(const Fixed& other);
-}
+
+	bool operator==(const Point& other) const;
+	int getXIntValue(void) const;
+	int getYIntValue(void) const;
+	float getXFloatValue(void) const;
+	float getYFloatValue(void) const;
+};
+
+bool	bsp(Point const a, Point const b, Point const c, Point const point);
 
 #endif
