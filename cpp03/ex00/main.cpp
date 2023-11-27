@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 17:42:51 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/25 20:25:18 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/11/27 13:10:20 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ int	main(void)
 
 	std::cout << BLUE << Pl2.getName() << " has "
 			<< Pl2.getHitPoints() << " Hit Points and "
-			<< Pl2.getEnergyPoints() << " Energy Points left" << RESET << "\n\n";
+			<< Pl2.getEnergyPoints() << " Energy Points left" << RESET << "\n";
+
+	std::cout << std::endl;
 
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:17:58 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/25 21:50:43 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/11/27 13:06:37 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,6 @@ int	main(void)
 		}
 	}
 	Pl3.highFivesGuys();
-	std::cout << '\n';
+	std::cout << std::endl;
 	return (0);
 }

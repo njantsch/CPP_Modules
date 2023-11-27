@@ -6,20 +6,20 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 17:17:58 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/25 20:44:41 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:49:42 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-void	printPl1Data(ClapTrap Pl1)
+void	printPl1Data(ClapTrap& Pl1)
 {
 	std::cout << '\n' << GREEN << Pl1.getName() << " has "
 			<< Pl1.getHitPoints() << " Hit Points and "
 			<< Pl1.getEnergyPoints() << " Energy Points left" << RESET << "\n\n";
 }
 
-void	printPl2Data(ScavTrap Pl2)
+void	printPl2Data(ScavTrap& Pl2)
 {
 	std::cout << BLUE << Pl2.getName() << " has "
 			<< Pl2.getHitPoints() << " Hit Points and "
@@ -52,6 +52,7 @@ int	main(void)
 	Pl2.guardGate();
 	Pl2.guardGate();
 
+	std::cout << std::endl;
 	printPl2Data(Pl2);
 
 	return (0);

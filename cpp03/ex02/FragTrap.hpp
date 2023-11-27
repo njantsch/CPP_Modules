@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 20:15:49 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/25 20:47:33 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/11/27 16:51:44 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ public:
 	FragTrap& operator=(const FragTrap& other);
 	~FragTrap();
 
-	void	attack(const std::string& target);
 	void	highFivesGuys(void);
 };
 
