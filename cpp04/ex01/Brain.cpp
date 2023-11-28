@@ -1,45 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 19:14:23 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/28 15:19:44 by njantsch         ###   ########.fr       */
+/*   Created: 2023/11/28 16:52:46 by njantsch          #+#    #+#             */
+/*   Updated: 2023/11/28 18:36:40 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "Brain.hpp"
 
-Cat::Cat() : Animal()
+Brain::Brain()
 {
-	this->type = "Cat";
-	std::cout << "Cat default constructor called" << std::endl;
+	std::cout << "Brain constructor called" << std::endl;
 }
 
-Cat::Cat(const Cat& other)
+Brain::Brain(const Brain& other)
 {
-	std::cout << "Cat copy constructor called" << std::endl;
+	std::cout << "Brain copy constructor called" << std::endl;
 	*this = other;
 }
 
-Cat& Cat::operator=(const Cat& other)
+Brain&	Brain::operator=(const Brain& other)
 {
 	if (this != &other) {
-		this->type = other.type;
+		for (int i = 0; i < 100; i++) {
+			this->ideas[i] = other.ideas[i];
+		}
 		return (*this);
 	}
 	std::cout << RED << "Error assigning the same value" << RESET << std::endl;
 	return (*this);
 }
 
-Cat::~Cat()
+Brain::~Brain()
 {
-	std::cout << "Cat destructor called" << std::endl;
-}
-
-void	Cat::makeSound()
-{
-	std::cout << "MEOW!" << std::endl;
+	std::cout << "Brain destructor called" << std::endl;
 }

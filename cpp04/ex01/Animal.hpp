@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 19:14:26 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/28 15:10:36 by njantsch         ###   ########.fr       */
+/*   Created: 2023/11/27 19:14:21 by njantsch          #+#    #+#             */
+/*   Updated: 2023/11/28 18:52:16 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#ifndef ANIMAL_HPP
+# define ANIMAL_HPP
 
-#include "Animal.hpp"
+#define RESET "\033[0m"
+#define RED "\033[31m"
+#define BOLDGREEN "\033[1m\033[32m"
+#define BOLDRED "\033[1m\033[31m"
 
-class Cat : public Animal
+#include <iostream>
+#include "Brain.hpp"
+
+class	Animal
 {
+protected:
+	std::string type;
 public:
-	Cat();
-	Cat(const Cat& other);
-	Cat& operator=(const Cat& other);
-	~Cat();
+	Animal();
+	Animal(const Animal& other);
+	Animal& operator=(const Animal& other);
+	virtual ~Animal();
 
-	void	makeSound();
+	std::string	getType() const;
+	virtual void	makeSound();
 };
 
 #endif

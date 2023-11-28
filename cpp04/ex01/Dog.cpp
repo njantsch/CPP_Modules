@@ -1,30 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/27 19:14:23 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/28 15:19:44 by njantsch         ###   ########.fr       */
+/*   Created: 2023/11/28 14:25:59 by njantsch          #+#    #+#             */
+/*   Updated: 2023/11/28 17:48:35 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "Dog.hpp"
 
-Cat::Cat() : Animal()
+Dog::Dog() : Animal()
 {
-	this->type = "Cat";
-	std::cout << "Cat default constructor called" << std::endl;
+	this->type = "Dog";
+	this->brain = new Brain();
+	std::cout << "Dog default constructor called" << std::endl;
 }
 
-Cat::Cat(const Cat& other)
+Dog::Dog(const Dog& other)
 {
-	std::cout << "Cat copy constructor called" << std::endl;
+	std::cout << "Dog copy constructor called" << std::endl;
 	*this = other;
 }
 
-Cat& Cat::operator=(const Cat& other)
+Dog& Dog::operator=(const Dog& other)
 {
 	if (this != &other) {
 		this->type = other.type;
@@ -34,12 +35,13 @@ Cat& Cat::operator=(const Cat& other)
 	return (*this);
 }
 
-Cat::~Cat()
+Dog::~Dog()
 {
-	std::cout << "Cat destructor called" << std::endl;
+	std::cout << "Dog destructor called" << std::endl;
+	delete this->brain;
 }
 
-void	Cat::makeSound()
+void	Dog::makeSound()
 {
-	std::cout << "MEOW!" << std::endl;
+	std::cout << "WOOF!" << std::endl;
 }

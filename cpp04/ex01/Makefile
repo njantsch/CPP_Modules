@@ -5,7 +5,7 @@ NAME = polymorphism
 GREEN=\033[32m
 RESET=\033[0m
 
-SOURCES = ./main.cpp ./Animal.cpp ./Cat.cpp ./Dog.cpp ./WrongAnimal.cpp ./WrongCat.cpp
+SOURCES = ./main.cpp ./Animal.cpp ./Cat.cpp ./Dog.cpp ./Brain.cpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
