@@ -1,11 +1,11 @@
 C++ = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
-NAME = IWantToSetTheWorldOnFire
+NAME = Interface
 
 GREEN=\033[32m
 RESET=\033[0m
 
-SOURCES = ./main.cpp ./Animal.cpp ./Cat.cpp ./Dog.cpp ./Brain.cpp
+SOURCES = ./main.cpp ./AMateria.cpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
