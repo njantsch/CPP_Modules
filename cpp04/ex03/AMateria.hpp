@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 15:02:23 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/30 18:14:49 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/04 19:12:18 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,22 @@
 
 #define RESET "\033[0m"
 #define RED "\033[31m"
+#define BOLDRED "\033[1m\033[31m"
 
 #include <iostream>
+
+class ICharacter;
 
 class AMateria
 {
 protected:
-	std::string const _materia_type;
+	std::string _materia_type;
 public:
 	AMateria();
 	AMateria(std::string const& type);
 	AMateria(const AMateria& other);
 	AMateria& operator=(const AMateria& other);
-	~AMateria();
+	virtual ~AMateria();
 
 	std::string const& getType() const; //Returns materia type
 

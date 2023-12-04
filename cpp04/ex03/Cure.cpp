@@ -6,23 +6,15 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 15:02:25 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/30 17:03:04 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/04 19:09:48 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cure.hpp"
 
-Cure::Cure() : AMateria()
-{
-	std::cout << "Cure default constructor called" << std::endl;
-	this->_materia_type = "cure";
-}
+Cure::Cure() : AMateria() { this->_materia_type = "cure"; }
 
-Cure::Cure(const Cure& other) : AMateria(other)
-{
-	std::cout << "Cure copy constructor called" << std::endl;
-	this->_materia_type = other._materia_type;
-}
+Cure::Cure(const Cure& other) : AMateria(other) { this->_materia_type = other._materia_type; }
 
 Cure& Cure::operator=(const Cure& other)
 {
@@ -30,16 +22,9 @@ Cure& Cure::operator=(const Cure& other)
 	return (*this);
 }
 
-Cure::~Cure()
-{
-	std::cout << "Cure destructor called" << std::endl;
-}
+Cure::~Cure() {}
 
-AMateria* Cure::clone() const
-{
-	Cure ret;
-	return (&ret);
-}
+AMateria* Cure::clone() const { return (new Cure(*this)); }
 
 void Cure::use(ICharacter& target)
 {

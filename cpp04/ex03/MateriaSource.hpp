@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:54:58 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/30 16:24:27 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/04 17:49:04 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 class MateriaSource : public IMateriaSource
 {
 private:
-	/* data */
+	AMateria*	_learnedMaterias[4];
 public:
 	MateriaSource();
 	MateriaSource(const MateriaSource& other);
@@ -26,7 +26,7 @@ public:
 	~MateriaSource();
 
 	void learnMateria(AMateria*);
-	AMateria* createMateria(std::string const& type);
+	AMateria* createMateria(std::string const & type);
 };
 
 #endif
