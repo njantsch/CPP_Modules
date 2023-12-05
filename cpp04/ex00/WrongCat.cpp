@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 16:11:52 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/28 16:24:54 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/05 15:27:27 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ WrongCat::WrongCat() : WrongAnimal()
 	std::cout << "WrongCat constructor called" << std::endl;
 }
 
-WrongCat::WrongCat(const WrongCat& other)
+WrongCat::WrongCat(const WrongCat& other) : WrongAnimal(other)
 {
 	std::cout << "WrongCat copy constructor called" << std::endl;
 	*this = other;
@@ -39,7 +39,7 @@ WrongCat::~WrongCat()
 	std::cout << "WrongCat destructor called" << std::endl;
 }
 
-void	WrongCat::makeSound()
+void	WrongCat::makeSound() const
 {
 	std::cout << "Wrong MEOW!" << std::endl;
 }

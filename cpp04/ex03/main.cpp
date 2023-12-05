@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 15:02:37 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/04 20:38:32 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/05 18:11:53 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	test_extended()
 	nico->equip(tmp2);
 	nico->unequip(2);
 	nico->unequip(1);
-	nico->equip(lexicon->createMateria("ice"));
+	nico->equip(tmp2->clone());
 	nico->equip(lexicon->createMateria("cure"));
 
 	eval->equip(cure);
@@ -59,7 +59,23 @@ void	test_extended()
 	std::cout << BOLDRED << "\ninvalid index" << RESET << std::endl;
 	nico->use(-1, *eval);
 	eval->use(4, *nico);
-	std::cout << std::endl;
+
+	std::cout << BOLDYELLOW << "\nCopying of MateriaSource and Character" << RESET << std::endl;
+
+	MateriaSource testM;
+	testM.learnMateria(new Ice());
+	{
+		MateriaSource tmpM = testM;
+	}
+
+	Character test;
+	test.equip(testM.createMateria("ice"));
+	{
+		Character tmp = test;
+		tmp.use(0, test);
+	}
+
+	std::cout << BOLDGREEN << "\nValid usage" << RESET << " and " << BOLDRED << "Invalid usage" << RESET << std::endl;
 
 	for (int i = 0; i < 4; i++) {
 		nico->use(i, *eval);

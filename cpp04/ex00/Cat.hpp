@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:14:26 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/28 15:10:36 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/05 13:33:13 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ public:
 	Cat& operator=(const Cat& other);
 	~Cat();
 
-	void	makeSound();
+	void	makeSound() const;
 };
 
 #endif

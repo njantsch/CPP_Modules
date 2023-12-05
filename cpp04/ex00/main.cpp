@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:13:56 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/28 16:46:24 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/05 18:13:40 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	main(void)
 
 	WrongAnimal*	base_w = new WrongAnimal();
 	WrongAnimal*	tiger_w = new WrongCat();
+	WrongCat*		tiger_origin = new WrongCat();
 
 	std::cout << BOLDRED << "\nWrong polymorphism...\n" << RESET << std::endl;
 
@@ -49,10 +50,13 @@ int	main(void)
 	base_w->makeSound();
 	std::cout << RED << "what does the " << tiger_w->getType() << " say ? -> " << RESET;
 	tiger_w->makeSound();
+	std::cout << RED << "(WrongCat instance) what does the " << tiger_origin->getType() << " say ? -> " << RESET;
+	tiger_origin->makeSound();
 	std::cout << std::endl;
 
 	delete base_w;
 	delete tiger_w;
-
+	delete tiger_origin;
+	// system("leaks Interfaces");
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:14:38 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/28 16:28:36 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/05 13:33:48 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ public:
 	WrongAnimal& operator=(const WrongAnimal& other);
 	~WrongAnimal();
 
-	void		makeSound();
+	void		makeSound() const;
 	std::string	getType() const;
 };
 

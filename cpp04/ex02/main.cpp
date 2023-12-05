@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:13:56 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/29 14:58:10 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/05 18:13:24 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 int	main(void)
 {
 
-	// Animal*  base = new Animal();
-	// AAnimal* base = new AAnimal();
-	// std::cout << GREEN << "Type of base class " << base->getType() << RESET << std::endl;
+	Animal base;
+	// AAnimal base;
+	std::cout << GREEN << "Type of base class " << base.getType() << RESET << std::endl;
 
 	AAnimal* dog1 = new Dog();
 	AAnimal* dog2 = new Dog();
@@ -35,11 +35,19 @@ int	main(void)
 		animalArr[i]->makeSound();
 	}
 
+	std::cout << BOLDYELLOW << "\nDeep Copy\n" << RESET << std::endl;
+
+	Dog test;
+	{
+		Dog tmp = test;
+	}
+	test.makeSound();
+
 	std::cout << BOLDRED << "\nDeletion\n" << RESET << std::endl;
 
 	for (int i = 0; i < 4; i++) {
 		delete animalArr[i];
 	}
-
+	// system("leaks Interfaces");
 	return (0);
 }

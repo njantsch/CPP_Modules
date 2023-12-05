@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 14:25:59 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/28 17:48:35 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/05 14:52:41 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,19 @@ Dog::Dog() : Animal()
 	std::cout << "Dog default constructor called" << std::endl;
 }
 
-Dog::Dog(const Dog& other)
+Dog::Dog(const Dog& other) : Animal(other)
 {
 	std::cout << "Dog copy constructor called" << std::endl;
-	*this = other;
+	this->type = other.type;
+	this->brain = new Brain(*other.brain);
 }
 
 Dog& Dog::operator=(const Dog& other)
 {
 	if (this != &other) {
 		this->type = other.type;
+		delete this->brain;
+		this->brain = new Brain(*other.brain);
 		return (*this);
 	}
 	std::cout << RED << "Error assigning the same value" << RESET << std::endl;
@@ -41,7 +44,7 @@ Dog::~Dog()
 	delete this->brain;
 }
 
-void	Dog::makeSound()
+void	Dog::makeSound() const
 {
 	std::cout << "WOOF!" << std::endl;
 }

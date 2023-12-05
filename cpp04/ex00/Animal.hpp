@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:14:21 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/28 15:10:46 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/05 13:32:13 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ public:
 	virtual ~Animal();
 
 	std::string	getType() const;
-	virtual void	makeSound();
+	virtual void	makeSound() const;
 };
 
 #endif

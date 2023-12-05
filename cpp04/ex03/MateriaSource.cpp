@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:54:54 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/04 19:30:27 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/05 17:45:47 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,23 @@ MateriaSource::MateriaSource()
 		this->_learnedMaterias[i] = NULL;
 }
 
-MateriaSource::MateriaSource(const MateriaSource& other) { *this = other; }
+MateriaSource::MateriaSource(const MateriaSource& other)
+{
+	std::cout << "MateriaSource copy constructor called" << std::endl;
+	for (int i = 0; i < 4; i++)
+		this->_learnedMaterias[i] = NULL;
+	*this = other;
+}
 
 MateriaSource& MateriaSource::operator=(const MateriaSource& other)
 {
+	std::cout << "MateriaSource copy assignment operator called" << std::endl;
 	if (this != &other) {
 		for (int i = 0; i < 4; i++) {
 			if (this->_learnedMaterias[i] != NULL)
 				delete this->_learnedMaterias[i];
 			if (other._learnedMaterias[i] != NULL)
-				this->_learnedMaterias[i] = other._learnedMaterias[i];
+				this->_learnedMaterias[i] = other._learnedMaterias[i]->clone();
 			else
 				this->_learnedMaterias[i] = NULL;
 		}

@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:14:17 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/28 15:19:40 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/05 13:33:07 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ Animal::~Animal()
 
 std::string	Animal::getType() const { return (this->type); }
 
-void	Animal::makeSound()
+void	Animal::makeSound() const
 {
 	std::cout << "* indistinguishable noises *" << std::endl;
 }

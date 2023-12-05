@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/30 14:57:48 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/04 20:16:57 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/05 17:50:01 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@ Character::Character() : _name("default name")
 		this->_inventory[i] = NULL;
 }
 
-Character::Character(std::string const& name)
+Character::Character(std::string const& name) : _name(name)
 {
-	this->_name = name;
 	this->_fIdx = 0;
 	for (int i = 0; i < 200; i++)
 		this->_floor[i] = NULL;
@@ -31,17 +30,27 @@ Character::Character(std::string const& name)
 		this->_inventory[i] = NULL;
 }
 
-Character::Character(const Character& other) { *this = other; }
+Character::Character(const Character& other)
+{
+	std::cout << "Character copy constructor called" << std::endl;
+	this->_fIdx = 0;
+	for (int i = 0; i < 200; i++)
+		this->_floor[i] = NULL;
+	for (int i = 0; i < 4; i++)
+		this->_inventory[i] = NULL;
+	*this = other;
+}
 
 Character& Character::operator=(const Character& other)
 {
+	std::cout << "Character copy assignment operator called" << std::endl;
 	if (this != &other) {
 		this->_name = other._name;
 		for (int i = 0; i < 4; i++) {
 			if (this->_inventory[i] != NULL)
 				delete this->_inventory[i];
 			if (other._inventory[i] != NULL)
-				this->_inventory[i] = other._inventory[i];
+				this->_inventory[i] = other._inventory[i]->clone();
 			else
 				this->_inventory[i] = NULL;
 		}

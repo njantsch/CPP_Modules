@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:14:32 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/28 17:56:22 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/05 14:22:04 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ public:
 	Dog& operator=(const Dog& other);
 	~Dog();
 
-	void	makeSound();
+	void	makeSound() const;
 };
 
 #endif

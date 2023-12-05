@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 19:14:36 by njantsch          #+#    #+#             */
-/*   Updated: 2023/11/28 16:27:50 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/05 13:33:36 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ WrongAnimal::~WrongAnimal()
 	std::cout << "WrongAnimal destructor called" << std::endl;
 }
 
-void	WrongAnimal::makeSound()
+void	WrongAnimal::makeSound() const
 {
 	std::cout << "* WrongAnimal default sound *" << std::endl;
 }
