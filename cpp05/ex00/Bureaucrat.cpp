@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:52:43 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/06 15:33:22 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/07 13:00:08 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,14 @@ Bureaucrat::Bureaucrat() : _name("nobody"), _grade(150)
 
 }
 
-Bureaucrat::Bureaucrat(const std::string& name, const int grade) : _name(name), _grade(grade)
+Bureaucrat::Bureaucrat(const std::string& name, const int grade) : _name(name)
 {
 	std::cout << "Bureaucrat attribute init constructor called" << std::endl;
+	if (grade > 150)
+		throw (Bureaucrat::GradeTooLowException());
+	if (grade < 1)
+		throw (Bureaucrat::GradeTooHighException());
+	this->_grade = grade;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other._name)
@@ -70,10 +75,10 @@ void	Bureaucrat::decrementGrade()
 
 const char*	Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return ("Bureaucrat grade is too high to increment");
+	return ("Bureaucrat grade is too high !");
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return ("Bureaucrat grade is too low to decrement");
+	return ("Bureaucrat grade is too low !");
 }

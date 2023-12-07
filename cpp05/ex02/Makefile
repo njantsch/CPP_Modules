@@ -5,7 +5,8 @@ NAME = maggots
 GREEN=\033[32m
 RESET=\033[0m
 
-SOURCES = ./main.cpp ./Bureaucrat.cpp ./Form.cpp
+SOURCES = ./main.cpp ./Bureaucrat.cpp ./AForm.cpp ./ShrubberyCreationForm.cpp \
+		./RobotomyRequestForm.cpp ./PresidentialPardonForm.cpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 

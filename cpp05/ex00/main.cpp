@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:49:01 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/06 15:39:34 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/07 22:18:17 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,30 +20,30 @@ int	main(void)
 	std::cout << GREEN << worker << RESET;
 	std::cout << GREEN << boss << RESET;
 	std::cout << GREEN << intern << RESET;
-	try
-	{
+	try {
+		Bureaucrat impostor("sus", 0);
+	}
+	catch(const std::exception& e) {
+		std::cerr << RED << e.what() << RESET << '\n';
+	}
+	try {
 		boss.incrementGrade();
 	}
-	catch(const std::exception& e)
-	{
+	catch(const std::exception& e) {
 		std::cerr << RED << e.what() << RESET << '\n';
 	}
 	std::cout << BOLDGREEN << "After exception: " << boss << RESET;
-	try
-	{
+	try {
 		intern.decrementGrade();
 	}
-	catch(const std::exception& e)
-	{
+	catch(const std::exception& e) {
 		std::cerr << RED << e.what() << RESET << '\n';
 	}
 	std::cout << BOLDGREEN << "After exception: " << intern << RESET;
-	try
-	{
+	try {
 		worker.incrementGrade();
 	}
-	catch(const std::exception& e)
-	{
+	catch(const std::exception& e) {
 		std::cerr << RED << e.what() << RESET << '\n';
 	}
 	std::cout << BOLDGREEN << "After valid increment: " << worker << RESET;

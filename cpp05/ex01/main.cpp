@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:49:01 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/06 15:39:34 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/07 15:19:03 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,41 @@
 
 int	main(void)
 {
-	Bureaucrat worker("John", 150);
+	Bureaucrat intern("John", 150);
 	Bureaucrat boss("Duck Dimmerdome", 1);
-	Bureaucrat intern(worker);
-	std::cout << GREEN << worker << RESET;
-	std::cout << GREEN << boss << RESET;
-	std::cout << GREEN << intern << RESET;
+	Form formImportant("important form", 5, 1);
+	Form formStandard("standard form", 150, 140);
+	std::cout << GREEN << formImportant << RESET;
+	std::cout << GREEN << formStandard << RESET;
+	std::cout << '\n';
 	try
 	{
-		boss.incrementGrade();
+		Form formInvalid("form_invalid", 0, 150);
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << RED << e.what() << RESET << '\n';
 	}
-	std::cout << BOLDGREEN << "After exception: " << boss << RESET;
+	std::cout << '\n';
 	try
 	{
-		intern.decrementGrade();
+		intern.signForm(formImportant);
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << RED << e.what() << RESET << '\n';
 	}
-	std::cout << BOLDGREEN << "After exception: " << intern << RESET;
+	std::cout << '\n';
 	try
 	{
-		worker.incrementGrade();
+		boss.signForm(formImportant);
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << RED << e.what() << RESET << '\n';
 	}
-	std::cout << BOLDGREEN << "After valid increment: " << worker << RESET;
+	std::cout << BOLDGREEN << "After valid signature: "
+		<< std::boolalpha << formImportant.getFormStatus()
+		<< RESET << '\n' << std::endl;
 	return (0);
 }

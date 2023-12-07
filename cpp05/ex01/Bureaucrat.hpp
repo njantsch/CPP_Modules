@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:52:58 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/06 16:33:45 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/07 14:42:27 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ public:
 	int		getGrade() const;
 	void	incrementGrade();
 	void	decrementGrade();
-	void	signForm(Form& form);
+	void	signForm(class Form& form);
 };
 
 std::ostream&	operator<<(std::ostream& out, const Bureaucrat& other);

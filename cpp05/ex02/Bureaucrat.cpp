@@ -6,21 +6,16 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:52:43 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/07 22:15:32 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/07 21:37:27 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat() : _name("nobody"), _grade(150)
-{
-	std::cout << "Bureaucrat default constructor called" << std::endl;
-
-}
+Bureaucrat::Bureaucrat() : _name("nobody"), _grade(150) {}
 
 Bureaucrat::Bureaucrat(const std::string& name, const int grade) : _name(name)
 {
-	std::cout << "Bureaucrat attribute init constructor called" << std::endl;
 	if (grade > 150)
 		throw (Bureaucrat::GradeTooLowException());
 	if (grade < 1)
@@ -30,7 +25,6 @@ Bureaucrat::Bureaucrat(const std::string& name, const int grade) : _name(name)
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other._name)
 {
-	std::cout << "Bureaucrat copy constructor called" << std::endl;
 	*this = other;
 }
 
@@ -50,10 +44,7 @@ std::ostream&	operator<<(std::ostream& out, const Bureaucrat& other)
 	return (out);
 }
 
-Bureaucrat::~Bureaucrat()
-{
-	std::cout << "Bureaucrat destructor called" << std::endl;
-}
+Bureaucrat::~Bureaucrat() {}
 
 const std::string& Bureaucrat::getName() const { return (this->_name); }
 
@@ -73,17 +64,16 @@ void	Bureaucrat::decrementGrade()
 	this->_grade++;
 }
 
-void	Bureaucrat::signForm(Form& form)
-{
-	form.beSigned(*this);
-}
+void	Bureaucrat::signForm(AForm& form) { form.beSigned(*this); }
+
+void	Bureaucrat::executeForm(AForm const & form) { form.execute(*this); }
 
 const char*	Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return ("Bureaucrat: Grade is too high !");
+	return ("Bureaucrat grade is too high !");
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return ("Bureaucrat: Grade is too low !");
+	return ("Bureaucrat grade is too low !");
 }
