@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:33:21 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/09 14:10:09 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/07 21:58:53 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 RobotomyRequestForm::RobotomyRequestForm()
 	: AForm("RobotomyRequestForm", 72, 45), _target("Elon Musk") {}
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
+RobotomyRequestForm::RobotomyRequestForm(const std::string target)
 	: AForm("RobotomyRequestForm", 72, 45), _target(target) {}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other) : AForm(other)

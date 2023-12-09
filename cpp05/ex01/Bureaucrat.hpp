@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:52:58 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/07 14:42:27 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/09 14:54:21 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #define RED "\033[31m"
 #define GREEN "\033[32m"
 #define BOLDGREEN "\033[1m\033[32m"
+#define BOLDRED "\033[1m\033[31m"
 
 #include <iostream>
 #include "Form.hpp"

@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:49:01 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/09 15:06:09 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/09 15:42:34 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,39 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 void	valid_test()
 {
 	try {
 		Bureaucrat boss("Duck Dimmerdome", 1);
-		Bureaucrat intern("John", 144);
-		// ------------------------------------------------------------------------
+		Intern someRandomIntern;
+		AForm* RRF;
+		AForm* SCF;
+		AForm* PPF;
+
+		RRF = someRandomIntern.makeForm("robotomy request", "Bender");
+		SCF = someRandomIntern.makeForm("shrubbery creation", "Home");
+		PPF = someRandomIntern.makeForm("presidential pardon", "Criminal");
+
 		std::cout << BOLDYELLOW << "\nShrubberyCreationForm" << RESET << std::endl;
 
-		ShrubberyCreationForm SCF("garden");
-		intern.signForm(SCF);
-		boss.executeForm(SCF);
-		// ------------------------------------------------------------------------
+		boss.signForm(*SCF);
+		boss.executeForm(*SCF);
+
 		std::cout << BOLDYELLOW << "\nRobotomyRequestForm" << RESET << std::endl;
 
-		RobotomyRequestForm RRF("Mark Zuckerberg");
-		boss.signForm(RRF);
-		boss.executeForm(RRF);
-		// ------------------------------------------------------------------------
+		boss.signForm(*RRF);
+ 		boss.executeForm(*RRF);
+
 		std::cout << BOLDYELLOW << "\nPresidentialPardonForm" << RESET << std::endl;
 
-		PresidentialPardonForm PPF("Evaluator");
-		boss.signForm(PPF);
-		boss.executeForm(PPF);
+		boss.signForm(*PPF);
+		boss.executeForm(*PPF);
+
+		delete RRF;
+		delete SCF;
+		delete PPF;
 	}
 	catch(const std::exception& e) {
 		std::cerr << RED << e.what() << RESET << '\n';
@@ -47,39 +56,13 @@ void	valid_test()
 void	invalid_test()
 {
 	Bureaucrat boss("Duck Dimmerdome", 1);
-	Bureaucrat intern("John", 144);
-	// ------------------------------------------------------------------------
-	std::cout << BOLDRED << "\nNot signed execution" << RESET << std::endl;
+	Intern someRandomIntern;
+	AForm* PPF;
 
-	ShrubberyCreationForm SCF("home");
-	try {
-		boss.executeForm(SCF);
-	}
-	catch(const std::exception& e) {
-		std::cerr << RED << e.what() << RESET << '\n';
-	}
-	// ------------------------------------------------------------------------
-	std::cout << BOLDRED << "\nAlready signed" << RESET << std::endl;
+	std::cout << BOLDRED << "Form type not recognized" << RESET << std::endl;
 
-	PresidentialPardonForm PPF("Criminal");
-	boss.signForm(PPF);
-	try {
-		boss.signForm(PPF);
-	}
-	catch(const std::exception& e) {
-		std::cerr << RED << e.what() << RESET << '\n';
-	}
-	// ------------------------------------------------------------------------
-	std::cout << BOLDRED << "\nInvalid execution rights" << RESET << std::endl;
-
-	RobotomyRequestForm RRF("Elon Musk");
-	try {
-		boss.signForm(RRF);
-		intern.executeForm(RRF);
-	}
-	catch(const std::exception& e) {
-		std::cerr << RED << e.what() << RESET << '\n';
-	}
+	if (PPF = someRandomIntern.makeForm("ppresidential pardon", "Criminal") == NULL)
+		return ;
 }
 
 int main(int ac, char **av)

@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:45:58 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/07 22:15:48 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/09 15:28:58 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Form::Form() : _name("some form"), _signed(false), _signedGrade(150), _execGrade
 	std::cout << "Form default constructor called" << std::endl;
 }
 
-Form::Form(const std::string name, const int sGrade, const int eGrade)
+Form::Form(const std::string& name, const int sGrade, const int eGrade)
 	: _name(name), _signed(false), _signedGrade(sGrade), _execGrade(eGrade)
 {
 	std::cout << "Form attribute constructor called" << std::endl;
@@ -63,6 +63,7 @@ void	Form::beSigned(Bureaucrat& bureaucrat)
 {
 	if (this->getFormStatus() == true) {
 		std::cout << RED << this->getName() << " is already signed" << RESET << std::endl;
+		throw (Form::FormAlreadySignedException());
 		return ;
 	}
 	if (bureaucrat.getGrade() > this->_signedGrade) {

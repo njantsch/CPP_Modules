@@ -1,12 +1,12 @@
 C++ = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
-NAME = useful_forms
+NAME = intern
 
 GREEN=\033[32m
 RESET=\033[0m
 
 SOURCES = ./main.cpp ./Bureaucrat.cpp ./AForm.cpp ./ShrubberyCreationForm.cpp \
-		./RobotomyRequestForm.cpp ./PresidentialPardonForm.cpp
+		./RobotomyRequestForm.cpp ./PresidentialPardonForm.cpp ./Intern.cpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 

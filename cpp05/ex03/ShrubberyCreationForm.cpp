@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:33:27 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/09 15:02:56 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/07 22:08:54 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 ShrubberyCreationForm::ShrubberyCreationForm()
 	: AForm("ShrubberyCreationForm", 145, 137), _target("home") {}
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
 	: AForm("ShrubberyCreationForm", 145, 137), _target(target) {}
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other) : AForm(other)

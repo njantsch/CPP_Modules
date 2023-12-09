@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:49:01 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/07 22:18:17 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/09 15:01:33 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,32 +20,40 @@ int	main(void)
 	std::cout << GREEN << worker << RESET;
 	std::cout << GREEN << boss << RESET;
 	std::cout << GREEN << intern << RESET;
+	// ------------------------------------------------------------------------
+	std::cout << BOLDRED << "\nInvalid grade initialize" << RESET << std::endl;
 	try {
 		Bureaucrat impostor("sus", 0);
 	}
 	catch(const std::exception& e) {
 		std::cerr << RED << e.what() << RESET << '\n';
 	}
+	// ------------------------------------------------------------------------
+	std::cout << BOLDRED << "\nInvalid increment" << RESET << std::endl;
 	try {
 		boss.incrementGrade();
 	}
 	catch(const std::exception& e) {
 		std::cerr << RED << e.what() << RESET << '\n';
 	}
-	std::cout << BOLDGREEN << "After exception: " << boss << RESET;
+	std::cout << GREEN << "After exception: " << boss << RESET;
+	// ------------------------------------------------------------------------
+	std::cout << BOLDRED << "\nInvalid decrement" << RESET << std::endl;
 	try {
 		intern.decrementGrade();
 	}
 	catch(const std::exception& e) {
 		std::cerr << RED << e.what() << RESET << '\n';
 	}
-	std::cout << BOLDGREEN << "After exception: " << intern << RESET;
+	std::cout << GREEN << "After exception: " << intern << RESET;
+	// ------------------------------------------------------------------------
+	std::cout << BOLDGREEN << "\nValid increment" << RESET << std::endl;
 	try {
 		worker.incrementGrade();
 	}
 	catch(const std::exception& e) {
 		std::cerr << RED << e.what() << RESET << '\n';
 	}
-	std::cout << BOLDGREEN << "After valid increment: " << worker << RESET;
+	std::cout << GREEN << "After valid increment: " << worker << RESET;
 	return (0);
 }

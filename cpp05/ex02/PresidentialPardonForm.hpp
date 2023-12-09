@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:33:18 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/07 21:33:53 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/09 14:09:52 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ private:
 	std::string _target;
 public:
 	PresidentialPardonForm();
-	PresidentialPardonForm(const std::string target);
+	PresidentialPardonForm(const std::string& target);
 	PresidentialPardonForm(const PresidentialPardonForm& other);
 	PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
 	~PresidentialPardonForm();

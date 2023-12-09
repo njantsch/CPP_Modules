@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 16:33:15 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/09 14:10:05 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/07 21:50:03 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 PresidentialPardonForm::PresidentialPardonForm()
 	: AForm("PresidentialPardonForm", 25, 5), _target("criminal") {}
 
-PresidentialPardonForm::PresidentialPardonForm(const std::string& target)
+PresidentialPardonForm::PresidentialPardonForm(const std::string target)
 	: AForm("PresidentialPardonForm", 25, 5), _target(target) {}
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other)

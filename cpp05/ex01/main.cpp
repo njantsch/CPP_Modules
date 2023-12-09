@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:49:01 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/07 15:19:03 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/09 15:30:28 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	main(void)
 	Form formStandard("standard form", 150, 140);
 	std::cout << GREEN << formImportant << RESET;
 	std::cout << GREEN << formStandard << RESET;
-	std::cout << '\n';
+	// ------------------------------------------------------------------------
+	std::cout << BOLDRED << "\nInvalid grade initialize" << RESET << std::endl;
 	try
 	{
 		Form formInvalid("form_invalid", 0, 150);
@@ -29,7 +30,8 @@ int	main(void)
 	{
 		std::cerr << RED << e.what() << RESET << '\n';
 	}
-	std::cout << '\n';
+	// ------------------------------------------------------------------------
+	std::cout << BOLDRED << "\nInvalid signing" << RESET << std::endl;
 	try
 	{
 		intern.signForm(formImportant);
@@ -38,7 +40,8 @@ int	main(void)
 	{
 		std::cerr << RED << e.what() << RESET << '\n';
 	}
-	std::cout << '\n';
+	// ------------------------------------------------------------------------
+	std::cout << BOLDGREEN << "\nValid signing" << RESET << std::endl;
 	try
 	{
 		boss.signForm(formImportant);
@@ -47,8 +50,6 @@ int	main(void)
 	{
 		std::cerr << RED << e.what() << RESET << '\n';
 	}
-	std::cout << BOLDGREEN << "After valid signature: "
-		<< std::boolalpha << formImportant.getFormStatus()
-		<< RESET << '\n' << std::endl;
+	std::cout << GREEN << "After valid signature: " << formImportant << RESET << std::endl;
 	return (0);
 }

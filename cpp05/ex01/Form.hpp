@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 15:46:01 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/07 22:14:13 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/09 14:10:25 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ public:
 	};
 
 	Form();
-	Form(const std::string name, const int sGrade, const int eGrade);
+	Form(const std::string& name, const int sGrade, const int eGrade);
 	Form(const Form& other);
 	Form& operator=(const Form& other);
 	~Form();

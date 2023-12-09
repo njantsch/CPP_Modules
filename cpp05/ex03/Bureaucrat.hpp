@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:52:58 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/09 14:40:06 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/07 21:11:23 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@
 #define RED "\033[31m"
 #define GREEN "\033[32m"
 #define BOLDGREEN "\033[1m\033[32m"
+#define BOLDYELLOW "\033[1m\033[33m"
 #define BOLDRED "\033[1m\033[31m"
 
 #include <iostream>
+#include "AForm.hpp"
 
 class Bureaucrat
 {
@@ -49,6 +51,9 @@ public:
 	int		getGrade() const;
 	void	incrementGrade();
 	void	decrementGrade();
+	void	signForm(class AForm& form);
+	void	executeForm(AForm const & form);
 };
 
 std::ostream&	operator<<(std::ostream& out, const Bureaucrat& other);
+
