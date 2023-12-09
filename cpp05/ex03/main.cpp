@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:49:01 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/09 15:42:34 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/09 15:54:58 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,10 @@ void	invalid_test()
 
 	std::cout << BOLDRED << "Form type not recognized" << RESET << std::endl;
 
-	if (PPF = someRandomIntern.makeForm("ppresidential pardon", "Criminal") == NULL)
+	PPF = someRandomIntern.makeForm("ppresidential pardon", "Criminal");
+	if (PPF == NULL)
 		return ;
+	delete PPF;
 }
 
 int main(int ac, char **av)
