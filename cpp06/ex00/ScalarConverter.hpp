@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:32:15 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/09 18:53:34 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/12 12:59:47 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,28 @@
 #define BOLDRED "\033[1m\033[31m"
 
 #include <iostream>
+#include <cctype>
+#include <iomanip>
+#include <cstdlib>
+#include <climits>
 
 class ScalarConverter
 {
 private:
-
-public:
 	ScalarConverter();
 	ScalarConverter(const ScalarConverter& other);
 	ScalarConverter& operator=(const ScalarConverter& other);
-	virtual ~ScalarConverter();
+	~ScalarConverter();
 
-	virtual static void	convert() = 0;
+	static void	convertFromChar(const std::string& input);
+	static void	convertFromInt(const std::string& input);
+	static void	convertFromFloat(const std::string& input);
+	static void	convertFromDouble(const std::string& input);
+
+	static bool	isInt(const std::string& input);
+	static bool	isChar(const std::string& input);
+	static bool	isFloat(const std::string& input);
+	static bool	isDouble(const std::string& input);
+public:
+	static void	convert(const std::string input);
 };
