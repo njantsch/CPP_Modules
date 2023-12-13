@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:32:11 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/12 18:53:26 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/13 14:41:49 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,18 @@ bool	ScalarConverter::isInt(const std::string& input)
 		return (false);
 	for (it = input.begin(); it < input.end(); it++)
 	{
-		if (it == input.begin() && *it == '-')
+		if (it == input.begin() && (*it == '-' || *it == '+'))
 			it++;
 		if (!std::isdigit(*it))
 			return (false);
 	}
-	std::cout << GREEN << "Is an int !" << RESET << std::endl;
 	return (true);
 }
 
 bool	ScalarConverter::isChar(const std::string& input)
 {
-	if (input.length() == 1 && !std::isdigit(input[0])) {
-		std::cout << GREEN << "Is a char!" << RESET << std::endl;
+	if (input.length() == 1 && !std::isdigit(input[0]))
 		return (true);
-	}
 	return (false);
 }
 
@@ -55,7 +52,7 @@ bool	ScalarConverter::isFloat(const std::string& input)
 	int dotCount = 0;
 	std::size_t i = 0;
 
-	if (input[i] == '-')
+	if (input[i] == '-' || input[i] == '+')
 		i++;
 	while (i < input.length()) {
 		if (!std::isdigit(input[i]) && input[i] != 'f' && input[i] != '.')
@@ -71,7 +68,6 @@ bool	ScalarConverter::isFloat(const std::string& input)
 	}
 	if (dotCount != 1)
 		return (false);
-	std::cout << GREEN << "Is a float !" << RESET << std::endl;
 	return (true);
 }
 
@@ -80,7 +76,7 @@ bool	ScalarConverter::isDouble(const std::string& input)
 	int dotCount = 0;
 	std::size_t i = 0;
 
-	if (input[i] == '-')
+	if (input[i] == '-' || input[i] == '+')
 		i++;
 	while (i < input.length()) {
 		if (!std::isdigit(input[i]) && input[i] != '.')
@@ -94,7 +90,6 @@ bool	ScalarConverter::isDouble(const std::string& input)
 	}
 	if (dotCount != 1)
 		return (false);
-	std::cout << GREEN << "Is a double !" << RESET << std::endl;
 	return (true);
 }
 
@@ -127,7 +122,7 @@ void	ScalarConverter::convertFromDouble(const std::string& input)
 		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << dec << std::endl;
-	if (fmod(flt, 1.0f) == 0.0f && flt < 1000000.0f)
+	if (flt < 1000000.0f && flt > -1000000.0f)
 		std::cout << std::fixed << std::setprecision(1);
 	std::cout << "float : " << flt << "f" << std::endl;
 	std::cout << "double : " << dbl << std::endl;
@@ -146,11 +141,10 @@ void	ScalarConverter::convertFromInt(const std::string& input)
 		std::cout << "char: Non displayable" << std::endl;
 	else
 		std::cout << "char: '" << chrctr << "'" << std::endl;
-	if (dbl >= INT_MAX || dbl < INT_MIN)
-		std::cout << "int: impossible" << std::endl;
-	else
-		std::cout << "int: " << dec << std::endl;
-	std::cout << std::fixed << std::setprecision(1) << "float : " << flt << "f" << '\n';
+	std::cout << "int: " << dec << std::endl;
+	if (dec < 1000000 && dec > -1000000)
+		std::cout << std::fixed << std::setprecision(1);
+	std::cout << "float : " << flt << "f" << '\n';
 	std::cout << "double : " << dbl << std::endl;
 }
 
@@ -171,7 +165,7 @@ void	ScalarConverter::convertFromFloat(const std::string& input)
 		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << dec << std::endl;
-	if (fmod(flt, 1.0f) == 0.0f && flt < 1000000.0f)
+	if (flt < 1000000.0f && flt > -1000000.0f)
 		std::cout << std::fixed << std::setprecision(1);
 	std::cout << "float : " << flt << "f" << std::endl;
 	std::cout << "double : " << dbl << std::endl;
@@ -192,5 +186,5 @@ void ScalarConverter::convert(const std::string input)
 	else if (isDouble(input) == true || input == "-inf" || input == "+inf" || input == "nan")
 		convertFromDouble(input);
 	else
-		std::cout << BOLDRED << "Error: please enter an int(42), char(a), float(42.0f) or double(42.0)" << std::endl;
+		std::cout << BOLDRED << "Error: please enter an int(42), char(a), float(42.0f), double(42.0), nan, nanf, +inf, +inff, -inf or -inff" << std::endl;
 }
