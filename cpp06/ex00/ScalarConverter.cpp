@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/09 17:32:11 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/13 14:41:49 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/14 19:01:40 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,14 @@ bool	ScalarConverter::isChar(const std::string& input)
 bool	ScalarConverter::isFloat(const std::string& input)
 {
 	int dotCount = 0;
+	char* endptr = NULL;
+	double dbl = std::strtod(input.c_str(), &endptr);
 	std::size_t i = 0;
 
+	if ((dbl > __FLT_MAX__ && input != "inff")
+		|| (dbl < -__FLT_MAX__ && input != "-inff")
+		|| endptr[1] != '\0')
+		return (false);
 	if (input[i] == '-' || input[i] == '+')
 		i++;
 	while (i < input.length()) {
@@ -74,8 +80,14 @@ bool	ScalarConverter::isFloat(const std::string& input)
 bool	ScalarConverter::isDouble(const std::string& input)
 {
 	int dotCount = 0;
+	char* endptr = NULL;
+	double dbl = std::strtod(input.c_str(), &endptr);
 	std::size_t i = 0;
 
+	if ((dbl == double(INFINITY) && input != "inf")
+		|| (dbl == -double(INFINITY) && input != "-inf")
+		|| *endptr != '\0')
+		return (false);
 	if (input[i] == '-' || input[i] == '+')
 		i++;
 	while (i < input.length()) {
@@ -102,7 +114,7 @@ void	ScalarConverter::convertFromChar(const std::string& input)
 	std::cout << "char: '" << character << "'" << '\n' \
 			<< "int: " << static_cast<int>(character) << '\n' \
 			<< "float: " << std::fixed << std::setprecision(1) << static_cast<float>(character) << 'f' << '\n' \
-			<< "double: " << std::fixed << std::setprecision(1) << static_cast<double>(character) << std::endl;
+			<< "double: " << static_cast<double>(character) << std::endl;
 }
 
 void	ScalarConverter::convertFromDouble(const std::string& input)
@@ -122,9 +134,12 @@ void	ScalarConverter::convertFromDouble(const std::string& input)
 		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << dec << std::endl;
-	if (flt < 1000000.0f && flt > -1000000.0f)
+	if (fmod(dbl, 1.0) == 0.0 && dbl < 10000000.0 && dbl > -10000000.0)
 		std::cout << std::fixed << std::setprecision(1);
-	std::cout << "float : " << flt << "f" << std::endl;
+	if (dbl > __FLT_MAX__ || dbl < -__FLT_MAX__)
+		std::cout << "float: impossible" << std::endl;
+	else
+		std::cout << "float : " << flt << "f" << std::endl;
 	std::cout << "double : " << dbl << std::endl;
 }
 
@@ -142,7 +157,7 @@ void	ScalarConverter::convertFromInt(const std::string& input)
 	else
 		std::cout << "char: '" << chrctr << "'" << std::endl;
 	std::cout << "int: " << dec << std::endl;
-	if (dec < 1000000 && dec > -1000000)
+	if (dec < 10000000 && dec > -10000000)
 		std::cout << std::fixed << std::setprecision(1);
 	std::cout << "float : " << flt << "f" << '\n';
 	std::cout << "double : " << dbl << std::endl;
@@ -150,7 +165,7 @@ void	ScalarConverter::convertFromInt(const std::string& input)
 
 void	ScalarConverter::convertFromFloat(const std::string& input)
 {
-	float	flt = std::atof(input.c_str());
+	float	flt = static_cast<float>(std::strtod(input.c_str(), NULL));
 	double	dbl = static_cast<double>(flt);
 	int		dec = static_cast<int>(flt);
 	char	chrctr = static_cast<char>(flt);
@@ -165,7 +180,7 @@ void	ScalarConverter::convertFromFloat(const std::string& input)
 		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << dec << std::endl;
-	if (flt < 1000000.0f && flt > -1000000.0f)
+	if (fmod(flt, 1.0f) == 0.0f && flt < 10000000.0f && flt > -10000000.0f)
 		std::cout << std::fixed << std::setprecision(1);
 	std::cout << "float : " << flt << "f" << std::endl;
 	std::cout << "double : " << dbl << std::endl;
