@@ -5,7 +5,7 @@ NAME = array
 GREEN=\033[32m
 RESET=\033[0m
 
-SOURCES = ./main.cpp
+SOURCES = ./main_subj.cpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
