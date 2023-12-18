@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Span.hpp                                           :+:      :+:    :+:   */
+/*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/16 16:18:17 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/18 14:15:30 by njantsch         ###   ########.fr       */
+/*   Created: 2023/12/18 15:05:46 by njantsch          #+#    #+#             */
+/*   Updated: 2023/12/18 19:24:13 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,26 @@
 
 #define RESET "\033[0m"
 #define RED "\033[31m"
+#define BOLDGREEN "\033[1m\033[32m"
 
 #include <iostream>
-#include <utility>
 #include <algorithm>
+#include <stack>
+#include <list>
 #include <vector>
-#include <climits>
+#include <deque>
 
-class Span
+template < class T, class Container = std::deque<T> >
+class MutantStack : public std::stack<T, Container>
 {
-private:
-	size_t _size;
-	std::vector<int> _numbers;
 public:
-	Span();
-	Span(unsigned int n);
-	Span(const Span& other);
-	Span& operator=(const Span& other);
-	~Span();
+	MutantStack();
+	MutantStack(const MutantStack& other);
+	MutantStack& operator=(const MutantStack& other);
+	~MutantStack();
 
-	void	addNumber(unsigned int n);
-	void	addNumbers(unsigned int range, unsigned int number);
-	int		shortestSpan(void);
-	int		longestSpan(void);
+	typedef typename std::stack<T, Container>::container_type::iterator iterator;
+
+	iterator begin();
+	iterator end();
 };

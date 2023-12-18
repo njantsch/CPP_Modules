@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:40:54 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/16 16:15:21 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/18 20:04:34 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #include <list>
 
 template <typename T>
-void	easyfind(T& prmT, int prmInt)
+void	easyFind(T& prmT, int prmInt)
 {
 	typename T::iterator it = std::find(prmT.begin(), prmT.end(), prmInt);
 	if (it == prmT.end())
