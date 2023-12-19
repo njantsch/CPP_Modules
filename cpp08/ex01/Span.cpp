@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 16:18:13 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/18 15:03:18 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:50:11 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,20 @@ void	Span::addNumber(unsigned int n)
 	this->_numbers.push_back(n);
 }
 
-void	Span::addNumbers(unsigned int range, unsigned int number)
+void	Span::addNumbersSingle(unsigned int range, unsigned int number)
 {
 	if (this->_numbers.size() + range > this->_size)
 		throw (std::runtime_error("Range exceeds the vector size"));
 	for (unsigned int i = 0; i < range; i++)
 		addNumber(number);
+}
+
+void	Span::addNumbersRange(unsigned int range, unsigned int number)
+{
+	if (this->_numbers.size() + range > this->_size)
+		throw (std::runtime_error("Range exceeds the vector size"));
+	for (unsigned int i = 0; i < range; i++)
+		addNumber(number++);
 }
 
 int	Span::shortestSpan(void)
@@ -65,6 +73,7 @@ int	Span::longestSpan(void)
 {
 	if (this->_numbers.size() <= 1)
 		throw (std::runtime_error("No span can be found"));
-	std::pair<std::vector<int>::iterator,std::vector<int>::iterator> minmax(std::minmax_element(this->_numbers.begin(), this->_numbers.end()));
+	std::pair<std::vector<int>::iterator,std::vector<int>::iterator> minmax(
+		std::minmax_element(this->_numbers.begin(), this->_numbers.end()));
 	return (*minmax.second - *minmax.first);
 }

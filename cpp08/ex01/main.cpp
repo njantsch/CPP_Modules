@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 16:18:04 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/18 15:01:23 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/19 13:51:07 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main()
 {
-	Span sp = Span(10005);
+	Span sp = Span(20005);
 
 	sp.addNumber(6);
 	sp.addNumber(3);
@@ -23,7 +23,8 @@ int main()
 	sp.addNumber(11);
 
 	try {
-		sp.addNumbers(10000, 42);
+		sp.addNumbersSingle(10000, 42);
+		sp.addNumbersRange(10000, 5);
 	}
 	catch(const std::exception& e) {
 		std::cerr << e.what() << '\n';

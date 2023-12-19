@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 16:18:17 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/18 14:15:30 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/19 12:40:47 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ public:
 	~Span();
 
 	void	addNumber(unsigned int n);
-	void	addNumbers(unsigned int range, unsigned int number);
+	void	addNumbersSingle(unsigned int range, unsigned int number);
+	void	addNumbersRange(unsigned int range, unsigned int number);
 	int		shortestSpan(void);
 	int		longestSpan(void);
 };
