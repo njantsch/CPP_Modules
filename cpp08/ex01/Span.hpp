@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 16:18:17 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/19 12:40:47 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/19 15:20:38 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 #define RESET "\033[0m"
 #define RED "\033[31m"
+#define BOLDGREEN "\033[1m\033[32m"
+#define BOLDRED "\033[1m\033[31m"
 
 #include <iostream>
 #include <utility>

@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 16:18:04 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/19 13:51:07 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/19 15:22:24 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int main()
 {
 	Span sp = Span(20005);
+
+	std::cout << BOLDGREEN << "\nValid adding of elements" << RESET << std::endl;
 
 	sp.addNumber(6);
 	sp.addNumber(3);
@@ -27,11 +29,23 @@ int main()
 		sp.addNumbersRange(10000, 5);
 	}
 	catch(const std::exception& e) {
-		std::cerr << e.what() << '\n';
+		std::cerr << RED << e.what() << RESET << '\n';
 	}
 
 	std::cout << sp.shortestSpan() << std::endl;
 	std::cout << sp.longestSpan() << std::endl;
+
+	std::cout << BOLDRED << "\nInvalid adding of elements" << RESET << std::endl;
+
+	try {
+		sp.addNumbersRange(10, 159);
+	}
+	catch(const std::exception& e) {
+		std::cerr << RED << e.what() << RESET << '\n';
+	}
+
+	std::cout << sp.shortestSpan() << std::endl;
+	std::cout << sp.longestSpan() << '\n' << std::endl;
 
 	return 0;
 }

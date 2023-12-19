@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/16 16:18:13 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/19 13:50:11 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/19 15:16:56 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	Span::longestSpan(void)
 {
 	if (this->_numbers.size() <= 1)
 		throw (std::runtime_error("No span can be found"));
-	std::pair<std::vector<int>::iterator,std::vector<int>::iterator> minmax(
-		std::minmax_element(this->_numbers.begin(), this->_numbers.end()));
-	return (*minmax.second - *minmax.first);
+	std::vector<int>::iterator minElement = std::min_element(this->_numbers.begin(), this->_numbers.end());
+	std::vector<int>::iterator maxElement = std::max_element(this->_numbers.begin(), this->_numbers.end());
+	return (*maxElement - *minElement);
 }

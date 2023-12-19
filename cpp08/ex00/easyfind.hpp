@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 18:40:54 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/18 20:04:34 by njantsch         ###   ########.fr       */
+/*   Updated: 2023/12/19 14:58:50 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,25 @@
 
 #include <iostream>
 #include <algorithm>
+#include <deque>
 #include <vector>
-#include <numeric>
 #include <list>
 
 template <typename T>
-void	easyFind(T& prmT, int prmInt)
+int	easyFind(T& prmT, int prmInt)
 {
 	typename T::iterator it = std::find(prmT.begin(), prmT.end(), prmInt);
 	if (it == prmT.end())
 		throw (std::runtime_error("Couldn't find integer in range"));
-	std::cout << GREEN << "Element found at index: " << std::distance(prmT.begin(), it) << RESET << std::endl;
+	return (std::distance(prmT.begin(), it));
+}
+
+template <typename Iterator, typename T>
+void iota(Iterator first, Iterator last, T value)
+{
+	while (first != last) {
+		*first = value;
+		++first;
+		++value;
+	}
 }
