@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nicolasjantsch <nicolasjantsch@student.    +#+  +:+       +#+        */
+/*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 16:43:17 by nicolasjant       #+#    #+#             */
-/*   Updated: 2024/01/01 17:22:22 by nicolasjant      ###   ########.fr       */
+/*   Updated: 2024/01/02 17:27:52 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,9 @@ void	RPN::evaluate(void)
 
 	for (it = this->_input.begin(); it != this->_input.end(); it++)
 	{
-		if (isOperator(*it) == true) {
+		if (isOperator(*it) == true
+			&& (*(it + 1) == 32 || (it + 1) == this->_input.end()))
+		{
 			if (this->_number_stk.size() < 2)
 				throw (std::runtime_error("Error"));
 			a = this->_number_stk.top();
@@ -74,7 +76,7 @@ void	RPN::evaluate(void)
 			this->_number_stk.pop();
 			this->_number_stk.push(doOperation(a, b, *it));
 		}
-		else if (isdigit(*it) != 0)
+		else if (isdigit(*it) != 0 && *(it + 1) == 32)
 			this->_number_stk.push(*it - '0');
 		else if (*it != 32)
 			throw (std::runtime_error("Error"));
