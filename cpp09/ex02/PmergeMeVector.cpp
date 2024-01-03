@@ -6,13 +6,14 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:32:08 by njantsch          #+#    #+#             */
-/*   Updated: 2024/01/02 18:46:53 by njantsch         ###   ########.fr       */
+/*   Updated: 2024/01/03 17:08:09 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMeVector.hpp"
 
-PmergeMeVector::PmergeMeVector(char** input, int args) : _input(input), _args(args - 1) {}
+PmergeMeVector::PmergeMeVector(char** input, int args)
+	: _input(input), _args(args - 1), _straggler(-1) {}
 
 PmergeMeVector::PmergeMeVector(const PmergeMeVector& other)
 {
@@ -24,6 +25,7 @@ PmergeMeVector& PmergeMeVector::operator=(const PmergeMeVector& other)
 	if (this != &other) {
 		this->_input = other._input;
 		this->_args = other._args;
+		this->_straggler = other._straggler;
 		return (*this);
 	}
 	std::cout << RED << "Error assigning the same value" << RESET << std::endl;
@@ -60,23 +62,95 @@ void	PmergeMeVector::checkInputAndStore(void)
 	}
 }
 
-std::vector<int>	PmergeMeVector::sortNumbers(void)
+void	PmergeMeVector::makePairs(void)
 {
-	int	struggler = -1;
-	std::vector<std::pair<int, int> > grouped;
+	std::pair<int, int> tmp;
 	std::vector<int>::iterator it = this->_nbrVector.begin();
+
 	for (; it != this->_nbrVector.end(); it++)
 	{
 		if (it + 1 != this->_nbrVector.end()) {
-			std::pair<int, int> tmp(*it, *(it + 1));
-			grouped.push_back(tmp);
+			if (*it > *(it + 1))
+				tmp = std::make_pair(*it, *(it + 1));
+			else
+				tmp = std::make_pair(*(it + 1), *it);
+			this->_vecPaired.push_back(tmp);
 			it++;
 		}
 		else if (this->_nbrVector.size() % 2 != 0)
-			struggler = *it;
+			this->_straggler = *it;
 	}
-	std::cout << "struggler: " << struggler << std::endl;
-	for (std::vector<std::pair<int, int> >::iterator it2 = grouped.begin(); it2 != grouped.end(); it2++)
-		std::cout << "first: " << it2->first << " second: " << it2->second << std::endl;
-	return (this->_nbrVector);
+}
+
+void	PmergeMeVector::mergePairs(std::vector<std::pair<int, int> >& vec, int begin, int mid, int end)
+{
+	size_t firstVectorIdx = 0;
+	size_t secondVectorIdx = 0;
+	size_t mergedVectorIdx = begin;
+
+	size_t firstVectorSize = mid - begin + 1;
+	size_t secondVectorSize = end - mid;
+
+	std::vector<std::pair<int, int> > firstVector(firstVectorSize);
+	std::vector<std::pair<int, int> > secondVector(secondVectorSize);
+
+	for (size_t i = 0; i < firstVectorSize; ++i)
+		firstVector[i] = vec[begin + i];
+	for (size_t i = 0; i < secondVectorSize; ++i)
+		secondVector[i] = vec[mid + 1 + i];
+
+	while (firstVectorIdx < firstVectorSize && secondVectorIdx < secondVectorSize)
+	{
+		if (firstVector[firstVectorIdx].first <= secondVector[secondVectorIdx].first)
+			vec[mergedVectorIdx++] = firstVector[firstVectorIdx++];
+		else
+			vec[mergedVectorIdx++] = secondVector[secondVectorIdx++];
+	}
+
+	while (firstVectorIdx < firstVectorSize)
+		vec[mergedVectorIdx++] = firstVector[firstVectorIdx++];
+
+	while (secondVectorIdx < secondVectorSize)
+		vec[mergedVectorIdx++] = secondVector[secondVectorIdx++];
+}
+
+void	PmergeMeVector::sortPairs(std::vector<std::pair<int, int> >& vec, int begin, int end)
+{
+	if (begin < end)
+	{
+		int mid = begin + (end - begin) / 2;
+		sortPairs(vec, begin, mid);
+		sortPairs(vec, mid + 1, end);
+		mergePairs(vec, begin, mid, end);
+	}
+}
+
+void	PmergeMeVector::createMainChainAndPend(void)
+{
+	size_t i = 0;
+	if (this->_vecPaired[0].second <= this->_vecPaired[0].first) {
+		this->_mainChain.push_back(this->_vecPaired[i].second);
+		this->_mainChain.push_back(this->_vecPaired[i++].first);
+	}
+	for (; i < this->_vecPaired.size(); i++)
+	{
+		this->_mainChain.push_back(this->_vecPaired[i].first);
+		this->_pend.push_back(this->_vecPaired[i].second);
+	}
+}
+
+std::vector<int>	PmergeMeVector::sortNumbers(void)
+{
+	makePairs();
+	sortPairs(this->_vecPaired, 0, this->_vecPaired.size() - 1);
+	createMainChainAndPend();
+	std::cout << "mainChain: ";
+	for (std::vector<int>::iterator it = this->_mainChain.begin(); it != this->_mainChain.end(); it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+	std::cout << "pendChain: ";
+	for (std::vector<int>::iterator it = this->_pend.begin(); it != this->_pend.end(); it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+	return (this->_mainChain);
 }
