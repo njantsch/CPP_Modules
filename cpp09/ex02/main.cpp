@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:32:01 by njantsch          #+#    #+#             */
-/*   Updated: 2024/01/02 17:23:57 by njantsch         ###   ########.fr       */
+/*   Updated: 2024/01/04 20:23:56 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ int	main(int ac, char **av)
 		PmergeMeVector obj(av + 1, ac);
 		obj.checkInputAndStore();
 		std::vector<int> res(obj.sortNumbers());
+		std::vector<int>::iterator it = res.begin();
+		for (; it != res.end(); it++)
+			std::cout << *it << " ";
+		std::cout << std::endl;
 	}
 	catch(const std::exception& e) {
 		std::cout << RED << e.what() << RESET << '\n';

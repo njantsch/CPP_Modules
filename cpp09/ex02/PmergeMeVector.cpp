@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:32:08 by njantsch          #+#    #+#             */
-/*   Updated: 2024/01/03 17:08:09 by njantsch         ###   ########.fr       */
+/*   Updated: 2024/01/04 20:58:02 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,14 +128,70 @@ void	PmergeMeVector::sortPairs(std::vector<std::pair<int, int> >& vec, int begin
 void	PmergeMeVector::createMainChainAndPend(void)
 {
 	size_t i = 0;
-	if (this->_vecPaired[0].second <= this->_vecPaired[0].first) {
-		this->_mainChain.push_back(this->_vecPaired[i].second);
-		this->_mainChain.push_back(this->_vecPaired[i++].first);
-	}
+
+	this->_mainChain.push_back(this->_vecPaired[0].second);
+
 	for (; i < this->_vecPaired.size(); i++)
 	{
 		this->_mainChain.push_back(this->_vecPaired[i].first);
 		this->_pend.push_back(this->_vecPaired[i].second);
+	}
+}
+
+void	PmergeMeVector::generateJacobsthalSequence(void)
+{
+	size_t size;
+	size_t jacobsthalNumber = 0;
+	size_t	i = 3;
+
+	size = this->_pend.size() + 3;
+
+	if (this->_pend.empty())
+		return ;
+	for (; i < size; i++) {
+		jacobsthalNumber = ((1 << i) - (i % 2 == 0 ? 1 : -1)) / 3;
+		this->_jacobsthalSequence.push_back(jacobsthalNumber);
+	}
+}
+
+int	PmergeMeVector::binarySearch(int item, int low, int high)
+{
+	if (high <= low)
+		return ((item < this->_mainChain[low]) ? (low + 1) : low);
+
+	int mid = (low + high) / 2;
+
+	if (item > this->_mainChain[mid])
+		return (binarySearch(item, mid + 1, high));
+
+	return (binarySearch(item, low, mid - 1));
+}
+
+void	PmergeMeVector::insertPendIntoMain(void)
+{
+	size_t	min = 0;
+	size_t	pos;
+	size_t jacobsIdx;
+	std::vector<size_t>::iterator it = this->_jacobsthalSequence.begin();
+
+	while (min < this->_pend.size())
+	{
+		jacobsIdx = *it;
+		while (--jacobsIdx > min) {
+			if (jacobsIdx <= this->_pend.size() - 1) {
+				std::cout << "idx: " << jacobsIdx << std::endl;
+				pos = binarySearch(this->_pend[jacobsIdx], 0, this->_mainChain.size() - 1);
+				// std::cout << "pos: " << pos << "item: " << this->_pend[jacobsIdx] << std::endl;
+				this->_mainChain.insert(this->_mainChain.begin() + pos, this->_pend[jacobsIdx]);
+			}
+		}
+		min = *it - 1;
+		it++;
+	}
+	if (this->_straggler >= 0)
+	{
+		pos = binarySearch(this->_straggler, 0, this->_mainChain.size() - 1);
+		this->_mainChain.insert(this->_mainChain.begin() + pos, this->_straggler);
 	}
 }
 
@@ -144,13 +200,16 @@ std::vector<int>	PmergeMeVector::sortNumbers(void)
 	makePairs();
 	sortPairs(this->_vecPaired, 0, this->_vecPaired.size() - 1);
 	createMainChainAndPend();
-	std::cout << "mainChain: ";
-	for (std::vector<int>::iterator it = this->_mainChain.begin(); it != this->_mainChain.end(); it++)
-		std::cout << *it << " ";
-	std::cout << std::endl;
-	std::cout << "pendChain: ";
-	for (std::vector<int>::iterator it = this->_pend.begin(); it != this->_pend.end(); it++)
-		std::cout << *it << " ";
-	std::cout << std::endl;
+	generateJacobsthalSequence();
+	insertPendIntoMain();
 	return (this->_mainChain);
 }
+
+	// std::cout << "mainChain: ";
+	// for (std::vector<size_t>::iterator it = this->_jacobsthalSequence.begin(); it != this->_jacobsthalSequence.end(); it++)
+	// 	std::cout << *it << " ";
+	// std::cout << std::endl;
+	// std::cout << "pendChain: ";
+	// for (std::vector<int>::iterator it = this->_pend.begin(); it != this->_pend.end(); it++)
+	// 	std::cout << *it << " ";
+	// std::cout << std::endl;
