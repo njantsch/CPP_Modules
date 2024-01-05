@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:32:08 by njantsch          #+#    #+#             */
-/*   Updated: 2024/01/04 20:58:02 by njantsch         ###   ########.fr       */
+/*   Updated: 2024/01/05 20:29:49 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,25 @@ bool	PmergeMeVector::isNumeric(std::string& nbr)
 	return (true);
 }
 
+bool	PmergeMeVector::findDuplicate(void)
+{
+	std::vector<int> tmp(this->_nbrVector);
+
+	std::sort(tmp.begin(), tmp.end());
+	std::vector<int>::iterator it = std::adjacent_find(tmp.begin(), tmp.end());
+	return ((it == tmp.end()) ? false : true);
+}
+
 void	PmergeMeVector::checkNumbers(std::string& nbr)
 {
-	if (nbr.empty() == true) throw (std::runtime_error("Error size of argument can't be 0"));
+	if (nbr.empty()) throw (std::runtime_error("Error size of argument can't be 0"));
 	if (!isNumeric(nbr)) throw (std::runtime_error("Error found non numeric character"));
 	if (std::atol(nbr.c_str()) > INT_MAX) throw (std::runtime_error("Error number too big"));
 }
 
 void	PmergeMeVector::checkInputAndStore(void)
 {
+	this->_startTime = clock();
 	std::vector<std::string> inputVector;
 	for (int i = 0; i < this->_args; i++)
 		inputVector.push_back(this->_input[i]);
@@ -60,6 +70,8 @@ void	PmergeMeVector::checkInputAndStore(void)
 		checkNumbers(*it);
 		this->_nbrVector.push_back(std::atoi(it->c_str()));
 	}
+	if (findDuplicate())
+		throw (std::runtime_error("Error found duplicate number"));
 }
 
 void	PmergeMeVector::makePairs(void)
@@ -157,7 +169,7 @@ void	PmergeMeVector::generateJacobsthalSequence(void)
 int	PmergeMeVector::binarySearch(int item, int low, int high)
 {
 	if (high <= low)
-		return ((item < this->_mainChain[low]) ? (low + 1) : low);
+		return ((item > this->_mainChain[low]) ? (low + 1) : low);
 
 	int mid = (low + high) / 2;
 
@@ -178,10 +190,8 @@ void	PmergeMeVector::insertPendIntoMain(void)
 	{
 		jacobsIdx = *it;
 		while (--jacobsIdx > min) {
-			if (jacobsIdx <= this->_pend.size() - 1) {
-				std::cout << "idx: " << jacobsIdx << std::endl;
+			if (jacobsIdx < this->_pend.size()) {
 				pos = binarySearch(this->_pend[jacobsIdx], 0, this->_mainChain.size() - 1);
-				// std::cout << "pos: " << pos << "item: " << this->_pend[jacobsIdx] << std::endl;
 				this->_mainChain.insert(this->_mainChain.begin() + pos, this->_pend[jacobsIdx]);
 			}
 		}
@@ -202,14 +212,35 @@ std::vector<int>	PmergeMeVector::sortNumbers(void)
 	createMainChainAndPend();
 	generateJacobsthalSequence();
 	insertPendIntoMain();
+	this->_elapsedTime = static_cast<double>(clock() - this->_startTime) * 1000.0 / CLOCKS_PER_SEC;
 	return (this->_mainChain);
 }
 
-	// std::cout << "mainChain: ";
-	// for (std::vector<size_t>::iterator it = this->_jacobsthalSequence.begin(); it != this->_jacobsthalSequence.end(); it++)
-	// 	std::cout << *it << " ";
-	// std::cout << std::endl;
-	// std::cout << "pendChain: ";
-	// for (std::vector<int>::iterator it = this->_pend.begin(); it != this->_pend.end(); it++)
-	// 	std::cout << *it << " ";
-	// std::cout << std::endl;
+void	PmergeMeVector::printBefore(void)
+{
+	std::vector<int>::iterator it = this->_nbrVector.begin();
+
+	std::cout << BOLDGREEN << "Before:	" << RESET;
+	for (; it != this->_nbrVector.end(); it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+}
+
+void	PmergeMeVector::printAfter(void)
+{
+	if (this->_mainChain.empty())
+		throw (std::runtime_error("Error: sort before printing after"));
+
+	std::vector<int>::iterator it = this->_mainChain.begin();
+
+	std::cout << BOLDGREEN << "After:	" << RESET;
+	for (; it != this->_mainChain.end(); it++)
+		std::cout << *it << " ";
+	std::cout << std::endl;
+}
+
+void	PmergeMeVector::displayProcessTime(void)
+{
+	std::cout << "Time to process a range of	" << this->_mainChain.size() << " elements with std::vector : " \
+		<< this->_elapsedTime << " ms" << std::endl;
+}

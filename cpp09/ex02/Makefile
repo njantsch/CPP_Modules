@@ -5,7 +5,7 @@ NAME = PmergeMe
 GREEN=\033[32m
 RESET=\033[0m
 
-SOURCES = ./main.cpp ./PmergeMeVector.cpp
+SOURCES = ./main.cpp ./PmergeMeVector.cpp ./PmergeMeDeque.cpp
 
 OBJECTS = $(SOURCES:.cpp=.o)
 
