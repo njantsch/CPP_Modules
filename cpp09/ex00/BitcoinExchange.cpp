@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:10:09 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/21 22:03:01 by njantsch         ###   ########.fr       */
+/*   Updated: 2024/01/06 18:13:51 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	BitcoinExchange::checkInput(std::string& line)
 		std::cerr << RED << "Error: Invalid date format => " << line << RESET << std::endl;
 		return (1);
 	}
-	if (year > INT_MAX || month > INT_MAX || day > INT_MAX || value > INT_MAX) {
+	if (year > INT_MAX || month > INT_MAX || day > INT_MAX || value > 1000) {
 		std::cerr << RED << "Error: too large a number" << RESET << std::endl;
 		return (1);
 	}
@@ -96,7 +96,7 @@ int	BitcoinExchange::checkInput(std::string& line)
 float	BitcoinExchange::findClosestDate(std::string targetDate)
 {
 	std::map<std::string, float>::iterator it = this->_data.begin();
-	float value;
+	float value = 0;
 
 	for (; it != this->_data.end(); ++it) {
 		int difference = std::atoi(targetDate.substr(0, 4).c_str()) - std::atoi(it->first.substr(0, 4).c_str());
@@ -107,7 +107,7 @@ float	BitcoinExchange::findClosestDate(std::string targetDate)
 			value = it->second;
 		}
 	}
-	return (value);
+	return ((value == 0) ? this->_data.begin()->second : value);
 }
 
 void	BitcoinExchange::calculateResult(std::string& line)
@@ -118,7 +118,8 @@ void	BitcoinExchange::calculateResult(std::string& line)
 	float inValue = 0;
 
 	sstream >> token;
-	(!this->_data[token]) ? dbValue = findClosestDate(token) : dbValue = this->_data[token];
+	std::map<std::string, float>::iterator it = this->_data.find(token);
+	(it != this->_data.end()) ? dbValue = this->_data[token] : dbValue = findClosestDate(token);
 	std::cout << token;
 	while (sstream >> token)
 	{
@@ -135,9 +136,13 @@ void	BitcoinExchange::calculateResult(std::string& line)
 void	BitcoinExchange::checkInput(std::ifstream& inputFile)
 {
 	std::string line;
-	std::getline(inputFile, line);
+	int iteration = 0;
 	while (std::getline(inputFile, line))
 	{
+		if (iteration++ == 0) {
+			if (line.compare("date | value") == 0)
+				std::getline(inputFile, line);
+		}
 		if (this->checkInput(line) == 1)
 			continue;
 		this->calculateResult(line);

@@ -6,13 +6,24 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 16:43:17 by nicolasjant       #+#    #+#             */
-/*   Updated: 2024/01/02 17:27:52 by njantsch         ###   ########.fr       */
+/*   Updated: 2024/01/06 18:22:31 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RPN.hpp"
 
-RPN::RPN(std::string& input) : _input(input) {}
+RPN::RPN(std::string& input)
+{
+	if (input.empty()) throw (std::invalid_argument("Error: input string is empty"));
+	int numbers = 0;
+	std::string::iterator it = input.begin();
+	for (; it != input.end(); it++) {
+		if (isdigit(*it))
+			numbers++;
+	}
+	if (numbers < 2) throw (std::invalid_argument("Error: not enough numbers"));
+	this->_input = input;
+}
 
 RPN::RPN(const RPN& other)
 {

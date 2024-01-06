@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:10:29 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/21 21:59:47 by njantsch         ###   ########.fr       */
+/*   Updated: 2024/01/06 16:17:02 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ int	main(int ac, char **av)
 	}
 	try {
 		BitcoinExchange obj;
+		std::string input(av[1]);
+		std::string::size_type pos;
+		pos = input.rfind(".txt");
+		if (pos == std::string::npos)
+			throw (std::invalid_argument("Error: needs to be in format .txt"));
 		std::ifstream inputFile(av[1]);
 		if (!inputFile.is_open())
 			throw (std::runtime_error("Error: couldn't open inputfile"));

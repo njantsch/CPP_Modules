@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:10:06 by njantsch          #+#    #+#             */
-/*   Updated: 2023/12/21 22:02:44 by njantsch         ###   ########.fr       */
+/*   Updated: 2024/01/06 14:03:25 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #define BOLDGREEN "\033[1m\033[32m"
 
 #include <iostream>
+#include <cstdlib>
 #include <sstream>
 #include <fstream>
 #include <climits>
