@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 16:43:17 by nicolasjant       #+#    #+#             */
-/*   Updated: 2024/01/06 18:22:31 by njantsch         ###   ########.fr       */
+/*   Updated: 2024/01/06 19:48:41 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int		RPN::doOperation(int a, int b, char op)
 	case '+': return (b + a);
 	case '-': return (b - a);
 	case '*': return (b * a);
-	case '/': return (b / a);
+	case '/': return ((a != 0) ? (b / a) : throw (std::runtime_error("Error")));
 	default: throw (std::runtime_error("Error"));
 	}
 }
@@ -92,5 +92,7 @@ void	RPN::evaluate(void)
 		else if (*it != 32)
 			throw (std::runtime_error("Error"));
 	}
+	if (this->_number_stk.size() != 1)
+		throw (std::runtime_error("Error"));
 	std::cout << this->_number_stk.top() << std::endl;
 }
