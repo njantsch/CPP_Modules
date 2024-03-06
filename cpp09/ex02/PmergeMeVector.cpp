@@ -6,7 +6,7 @@
 /*   By: njantsch <njantsch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 12:32:08 by njantsch          #+#    #+#             */
-/*   Updated: 2024/01/05 20:29:49 by njantsch         ###   ########.fr       */
+/*   Updated: 2024/03/06 13:56:54 by njantsch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void	PmergeMeVector::checkInputAndStore(void)
 	std::vector<std::string> inputVector;
 	for (int i = 0; i < this->_args; i++)
 		inputVector.push_back(this->_input[i]);
+  if (inputVector.size() == 1) throw (std::runtime_error("Error nothing to sort"));
 	std::vector<std::string>::iterator it = inputVector.begin();
 	for (; it != inputVector.end(); it++) {
 		checkNumbers(*it);
